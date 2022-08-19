@@ -16,7 +16,6 @@ jobs:
         uses: emiliopedrollo/create-pull-request@v1.1.0
         with:
           repository: tonasodji/test_pull_request
-          base: $GITHUB_BASE_REF
               
 
 
