@@ -25,6 +25,8 @@ jobs:
         uses: peter-evans/create-pull-request@v4.1.1
         with:
           token: ${{ secrets.TOK }}
+      - name: checkout
+        uses: actions/checkout@v2
 
     
 
