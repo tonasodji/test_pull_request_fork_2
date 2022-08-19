@@ -12,9 +12,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: delete
-        run: git rm .github/workflows/test.yml
-        
       - name: Creates Pull Request
         uses: emiliopedrollo/create-pull-request@v1.1.0
         with:
