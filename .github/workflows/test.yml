@@ -13,13 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v3
-        
-      - name: Creates Pull Request
-        uses: emiliopedrollo/create-pull-request@v1.1.0
-        with: 
+        uses: actions/checkout@v2
+        with:
           repository: tonasodji/test_pull_request
-          base: main
+          ref: main
+      - name: create file
+        run: echo "ciao" > ciao
+        
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4.1.1
+
         
 
               
