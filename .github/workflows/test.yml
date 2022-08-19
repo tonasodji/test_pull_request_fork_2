@@ -19,7 +19,9 @@ jobs:
           repository: tonasodji/test_pull_request
           ref: main
       - name: create file
-        run: git clone https://github.com/tonasodji/test_pull_request_fork_2.git
+        run: |
+          git clone https://github.com/tonasodji/test_pull_request_fork_2.git
+          cp -r test_pull_request_fork_2/.github .
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.1.1
