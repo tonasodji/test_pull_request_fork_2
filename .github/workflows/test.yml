@@ -17,8 +17,8 @@ jobs:
       run: |
         #git rm .github/workflows/test.yml
         git clone https://github.com/tonasodji/pvs.git
-        cd pvs/.github/workflows
-        gh workflow run [github-ci.yml]
+        cd pvs/
+        gh workflow run github-ci.yml
         
         
         
