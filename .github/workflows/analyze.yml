@@ -19,10 +19,6 @@ jobs:
         #repository: tonasodji/test_pull_request_fork_2
     - name: run
       run: |
-        #rm 
-        echo "REF" $GITHUB_REF
-        echo "REF_NAME" $GITHUB_REF_NAME
-        echo "REPO" $GITHUB_REPOSITORY
         git clone https://github.com/tonasodji/pvs.git
         cd pvs
         pvs-studio-analyzer trace -- make -j8
