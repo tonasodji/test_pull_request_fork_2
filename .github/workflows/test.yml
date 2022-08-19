@@ -4,7 +4,7 @@ name: "test_2"
 on:
   workflow_dispatch:
   pull_request:
-  push:
+
 env:
     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
