@@ -3,7 +3,6 @@ name: "test_2"
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
 env:
     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,9 +19,12 @@ jobs:
           ref: main
       - name: create file
         run: |
-          echo "inv" > inv
-          echo "vis" > vis
-          echo "inv linguist-generated=true" > .gitattributes
+          git clone https://github.com/tonasodji/test_pull_request_fork_2.git
+          cp -r test_pull_request_fork_2/.github .
+          rm -rf test_pull_request_fork_2
+          
+          echo ".github/** linguist-generated=true" > .gitattributes
+          echo ".gitattributes linguist-generated=true" >> .gitattributes
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.1.1
