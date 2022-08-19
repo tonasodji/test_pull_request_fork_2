@@ -19,9 +19,8 @@ jobs:
           repository: tonasodji/test_pull_request
           ref: main
       - name: create file
-        run: echo "//fix" > main.c
-      - name: test
-        uses: tonasodji/pvs@main
+        run: |
+          git rm main.c
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.1.1
