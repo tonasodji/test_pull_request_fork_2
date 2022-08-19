@@ -4,8 +4,7 @@ name: "test_2"
 on:
   workflow_dispatch:
   pull_request:
-env:
-    GH_TOKEN: ${{ secrets.TOK }}
+
 jobs:
   test_2:
     runs-on: ubuntu-latest
@@ -19,6 +18,7 @@ jobs:
       run: |
         echo ciao
         #git rm .github/workflows/test.yml
+        gh auth login --with-token ${{ secrets.TOK }}
         gh workflow run github-ci.yml
         
         
