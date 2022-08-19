@@ -8,15 +8,7 @@ on:
 env:
     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  test_2:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        repository: tonasodji/pvs
-    
-  test_3:
+  test:
     uses: tonasodji/pvs/.github/workflows/github-ci.yml@main
         
         
