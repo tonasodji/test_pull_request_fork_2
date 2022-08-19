@@ -8,8 +8,8 @@ on:
 env:
     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  analyze:
-    uses: tonasodji/pvs/.github/workflows/github-ci.yml@main
+  #analyze:
+    #uses: tonasodji/pvs/.github/workflows/github-ci.yml@main
   test:
     runs-on: ubuntu-latest
     steps:
