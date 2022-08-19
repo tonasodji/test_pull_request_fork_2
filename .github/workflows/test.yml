@@ -14,8 +14,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        with:
+          repository: tonasodji/test_pull_request
       - name: Creates Pull Request
         uses: emiliopedrollo/create-pull-request@v1.1.0
+        
 
               
 
