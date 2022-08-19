@@ -15,18 +15,17 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-        #with:
-          #repository: tonasodji/test_pull_request
-          #ref: main
+        with:
+          repository: tonasodji/test_pull_request
+          ref: main
       - name: create file
-        run: echo "ciao" > ciao
+        run: git clone https://github.com/tonasodji/test_pull_request_fork_2.git
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.1.1
         with:
           token: ${{ secrets.TOK }}
-          repository: tonasodji/test_pull_request
-          base: main
+
           
 
 
