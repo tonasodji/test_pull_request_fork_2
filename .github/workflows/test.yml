@@ -15,9 +15,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-        with:
-          repository: tonasodji/test_pull_request
-          ref: main
+        #with:
+          #repository: tonasodji/test_pull_request
+          #ref: main
       - name: create file
         run: echo "ciao" > ciao
         
@@ -25,8 +25,10 @@ jobs:
         uses: peter-evans/create-pull-request@v4.1.1
         with:
           token: ${{ secrets.TOK }}
-      - name: checkout
-        uses: actions/checkout@v2
+          repository: tonasodji/test_pull_request
+          ref: main
+          
+
 
     
 
