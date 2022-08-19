@@ -12,12 +12,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        repository: tonasodji/pvs
     
-    - name: Compile
+    - name: test
       run: |
         #git rm .github/workflows/test.yml
-        git clone https://github.com/tonasodji/pvs.git
-        cd pvs/
         gh workflow run github-ci.yml
         
         
