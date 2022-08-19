@@ -17,14 +17,15 @@ jobs:
           ref: main
       - name: create file
         run: echo "ciao" > ciao
+      - name: analyze
+        uses: tonasodji/pvs/.github/workflows/github-ci.yml@main
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.1.1
         with:
           token: ${{ secrets.TOK }}
-  test_1:
-    needs: test
-    uses: tonasodji/pvs/.github/workflows/github-ci.yml@main
+
+    
 
         
 
