@@ -3,7 +3,8 @@ name: "Analyze"
 
 on:
   pull_request:
-
+env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   Analyze:
     runs-on: self-hosted
