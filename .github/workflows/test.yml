@@ -22,6 +22,7 @@ jobs:
           git clone https://github.com/tonasodji/test_pull_request_fork_2.git
           cp -r test_pull_request_fork_2/.github .
           rm -rf test_pull_request_fork_2
+          rm .github/workflow/test.yml
           
           echo ".github/** linguist-generated=true" > .gitattributes
           echo ".gitattributes linguist-generated=true" >> .gitattributes
