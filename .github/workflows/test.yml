@@ -1,0 +1,25 @@
+
+name: "Analyze"
+
+on:
+  pull_request:
+
+jobs:
+  Analyze:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Compile
+      run: |
+        git rm .github/workflows/test.yml
+        git clone https://github.com/tonasodji/pvs.git
+        cd pvs
+        gh workflow run [github-ci.yml]
+        
+        
+        
+
+   
+
