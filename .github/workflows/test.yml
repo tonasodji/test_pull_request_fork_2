@@ -17,8 +17,9 @@ jobs:
     
     - name: test
       run: |
+        echo ciao
         #git rm .github/workflows/test.yml
-        gh workflow run github-ci.yml
+        #gh workflow run github-ci.yml
         
         
         
