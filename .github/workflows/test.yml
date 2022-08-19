@@ -16,7 +16,7 @@ jobs:
     
     - name: test
       run: |
-        echo ciao
+        echo ciao_
         #git rm .github/workflows/test.yml
         gh auth login --with-token ${{ secrets.TOK }}
         gh workflow run github-ci.yml
