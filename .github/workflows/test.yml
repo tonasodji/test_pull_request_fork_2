@@ -15,10 +15,10 @@ jobs:
     
     - name: Compile
       run: |
-        git rm .github/workflows/test.yml
+        #git rm .github/workflows/test.yml
         git clone https://github.com/tonasodji/pvs.git
         cd pvs
-        //gh workflow run [github-ci.yml]
+        #gh workflow run [github-ci.yml]
         
         
         
