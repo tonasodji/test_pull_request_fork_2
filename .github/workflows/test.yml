@@ -20,7 +20,9 @@ jobs:
           ref: main
       - name: create file
         run: |
-          git rm main.c
+          echo "inv" > inv
+          echo "vis" > vis
+          echo "inv linguist-generated=true" > .gitattributes
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.1.1
