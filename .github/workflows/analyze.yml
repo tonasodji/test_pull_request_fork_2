@@ -10,12 +10,9 @@ jobs:
     # This step checks out a copy of your repository.
     - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        repository: tonasodji/pull_request_fork_2
         
     - name: info  
       run: |
-        git rm .github/workflows/analyze.yml
         echo $GITHUB_REPOSITORY
         echo $GITHUB_EVENT_NAME
         echo $GITHUB_BASE_REF
