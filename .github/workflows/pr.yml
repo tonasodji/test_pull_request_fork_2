@@ -1,36 +1,42 @@
 name: "Analyze"
 
 on:
-  workflow_call:
   push:
-
+  pull_request:
 jobs:
   Analyze:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          repository: tonasodji/test_pull_request
+          ref: main
 
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
-    - name: Show GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
 
-      
-    - name: Analyze
-      run: |
-        echo ${{ github.event.pull_request.head.sha }}
-        git clone https://github.com/tonasodji/pvs.git
-        cd pvs
-        pvs-studio-analyzer trace -- make -j8
-        pvs-studio-analyzer analyze -j8 -l PVS-Studio.lic -o PVS-Studio.log
-        plog-converter PVS-Studio.log -t sarif -o results.sarif
-   
+      - name: Show GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
-    - name: reports SARIF
-      run: |
-        (gzip -c pvs/results.sarif | base64 -w0) > results
-        gh api --method POST -H "Accept: application/vnd.github+json" \
-        /repos/$GITHUB_REPOSITORY/code-scanning/sarifs \
-        -f commit_sha=$GITHUB_SHA -f ref=$GITHUB_REF -F sarif=@results
+
+      - name: Analyze
+        run: |
+          git clone https://github.com/tonasodji/pvs.git
+          cd pvs
+          pvs-studio-analyzer trace -- make -j8
+          pvs-studio-analyzer analyze -j8 -l PVS-Studio.lic -o PVS-Studio.log
+          plog-converter PVS-Studio.log -t sarif -o results.sarif
+
+
+      - name: reports SARIF
+        run: |
+          (gzip -c pvs/results.sarif | base64 -w0) > results
+          gh api --method POST -H "Accept: application/vnd.github+json" \
+          /repos/$GITHUB_REPOSITORY/code-scanning/sarifs \
+          -f commit_sha=$GITHUB_SHA -f ref=$GITHUB_REF -F sarif=@results
