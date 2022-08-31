@@ -15,22 +15,19 @@ jobs:
         with:
           repository: tonasodji/test_pull_request
           ref: main
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           
-
       - name: Show GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           #echo "$GITHUB_CONTEXT"
           echo "//test" > main.c
-        
 
-
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Analyze
         run: |
           git clone https://github.com/tonasodji/pvs.git
