@@ -20,6 +20,7 @@ jobs:
       
     - name: Analyze
       run: |
+        echo ${{ github.event.pull_request.head.sha }}
         git clone https://github.com/tonasodji/pvs.git
         cd pvs
         pvs-studio-analyzer trace -- make -j8
