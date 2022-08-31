@@ -5,7 +5,7 @@ on:
 
 jobs:
   Analyze:
-    runs-on: eclairit-1
+    runs-on: eclairit
     steps:
     - name: Checkout
       uses: actions/checkout@v2
