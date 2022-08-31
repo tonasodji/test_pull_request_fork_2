@@ -3,6 +3,9 @@ name: "Analyze"
 on:
   push:
   pull_request:
+#github environment variables
+env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   Analyze:
     runs-on: self-hosted
@@ -22,7 +25,10 @@ jobs:
       - name: Show GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: |
+          #echo "$GITHUB_CONTEXT"
+          echo "//test" > main.c
+        
 
 
       - name: Analyze
