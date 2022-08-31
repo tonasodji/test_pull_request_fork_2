@@ -1,32 +1,24 @@
-name: "Analyze"
 
+name: "Analyze"
 on:
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   Analyze:
-    runs-on: self-hosted
+    runs-on: eclairit-1
     steps:
-    # This step checks out a copy of your repository.
-    - name: Checkout repository
-      uses: actions/checkout@v3
-        
-    - name: info  
-      run: |
-        echo $GITHUB_REPOSITORY
-        echo $GITHUB_EVENT_NAME
-        echo $GITHUB_BASE_REF
+    - name: Checkout
+      uses: actions/checkout@v2
+      
     - name: Analyze
       run: |
-        git clone https://github.com/tonasodji/pvs.git
-        cd pvs
-        pvs-studio-analyzer trace -- make -j8
-        pvs-studio-analyzer analyze -j8 -l PVS-Studio.lic -o PVS-Studio.log
-        plog-converter PVS-Studio.log -t sarif -o results.sarif
-   
-
-    - name: Upload SARIF file
+        git clone https://github.com/tonasodji/test.git
+        # Prepare for build
+        test/./prepare.sh
+        # Analyze the project
+        test/analyze.sh openssh
+        
+    - name: reports SARIF
       uses: github/codeql-action/upload-sarif@v2
       with:
-        # Path to SARIF file relative to the root of the repository
-        sarif_file: pvs/results.sarif
+        sarif_file: ECLAIR/gh-quality-report.sarif
