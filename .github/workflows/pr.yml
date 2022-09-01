@@ -27,6 +27,11 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.TOK }}
+          branch: main
+          add-paths: |
+            *.c
+            docs/*.md
+          title: test pr
           
       - name: Expose git commit data
         uses: rlespinasse/git-commit-data-action@v1
@@ -45,4 +50,4 @@ jobs:
           (gzip -c pvs/results.sarif | base64 -w0) > results
           gh api --method POST -H "Accept: application/vnd.github+json" \
           /repos/$GITHUB_REPOSITORY/code-scanning/sarifs \
-          -f commit_sha=$GITHUB_SHA -f ref=$GITHUB_REF -F sarif=@results
+          -f commit_sha="f4f6f3d0a77638eb68675bf9e8c731380a3bdede" -f ref="refs/pull/27/merge" -F sarif=@results
