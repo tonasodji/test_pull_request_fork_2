@@ -27,9 +27,6 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.TOK }}
-          branch: main
-          add-paths: |
-            *.c
           title: test pr
           
       - name: Expose git commit data
