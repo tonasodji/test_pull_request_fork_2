@@ -30,7 +30,6 @@ jobs:
           branch: main
           add-paths: |
             *.c
-            docs/*.md
           title: test pr
           
       - name: Expose git commit data
